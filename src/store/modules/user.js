@@ -11,9 +11,9 @@ const getDefaultState = () => {
   }
 }
 
-const state = getDefaultState();
+const state = getDefaultState()
 
-// 定义getters
+// 定义 getters
 var getters = {
   isLoggedIn: state => !isEmpty(state.accessToken),
   user: state => state.user,
@@ -34,14 +34,14 @@ const actions = {
   }
 }
 
-// 定义mutations
+// 定义 mutations
 const mutations = {
   setUser(state, user) {
-    state.user= user
+    state.user = user
   },
-  setToken(state, tokenPayLoad) {
-    state.accessToken = tokenPayLoad.access_token
-    state.accessTokenExpiredAt = new Date().getTime() + tokenPayLoad.expires_in * 1000
+  setToken(state, tokenPayload) {
+    state.accessToken = tokenPayload.access_token
+    state.accessTokenExpiredAt = new Date().getTime() + tokenPayload.expires_in * 1000
   }
 }
 
