@@ -1,4 +1,5 @@
 import wepy from '@wepy/core'
+import store from '@/store'
 
 const host = 'http://www.bbs.com/api/v1/'
 
@@ -38,8 +39,36 @@ const request = async (url, options = {}, showLoading = true) => {
   const error = new Error(response.data.message)
   error.response = response
   return Promise.reject(error);
-
 }
+
+const checkToken = async () => {
+  // 从缓存中取出 token
+  const accessToken = store.getters.accessToken
+  const expiredAt = store.getters.accessTokenExpiredAt
+
+  // 如果token 过期了， 则调用刷新方法
+  if (accessToken && new Date().getTime() > expiredAt) {
+    try {
+      return store.dispatch('refresh')
+    } catch (err) {
+      return store.dispatch('login')
+    }
+  }
+}
+
+// 普通请求
+const authRequest = async (url, options = {}, showLoading = true) => {
+  
+  await checkToken()
+
+  options.header = {
+    Authorization: 'Bearer ' + store.getters.accessToken
+  }
+  return await request(url, options, showLoading)
+}
+
+
 export {
-  request
+  request,
+  authRequest
 }
