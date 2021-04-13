@@ -27,9 +27,11 @@ wepy.app({
 <config>
 {
   pages: [
+     'pages/auth/register',
     'pages/index',
     'pages/user',
     'pages/auth/login'
+   
   ],
   window: {
     backgroundTextStyle: 'light',
