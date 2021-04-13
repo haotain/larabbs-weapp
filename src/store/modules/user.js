@@ -1,5 +1,5 @@
 import wepy from '@wepy/core'
-import {login, refresh, logout} from '@/api/auth'
+import {login, logout, refresh, register} from '@/api/auth'
 import * as auth from '@/utils/auth'
 import isEmpty from 'lodash/isEmpty'
 import {getCurrentUser} from '@/api/user'
@@ -58,6 +58,14 @@ const actions = {
 
     commit('setUser', userResponse.data)
     auth.setUser(userResponse.data)
+  },
+  // 注册
+  async register ({dispatch}, params = {}) {
+    const loginData = await wepy.wx.login()
+    params.code = loginData.code
+    
+    await register(params)
+    await dispatch('login')
   }
 
 }
