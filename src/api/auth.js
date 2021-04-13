@@ -22,7 +22,7 @@ export function logout(token) {
       'Authorization': 'Bearer ' + token
     }
   })
-
+}
 /**
  * 获取验证码
  */

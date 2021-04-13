@@ -284,9 +284,14 @@
             })
           }, 2000)
         } catch (err) {
-          // 验证码错误
-          console.log(err)
-          
+           // 验证码错误
+          if (err.response.statusCode === 401) {
+            this.$set(this.errors, 'verification_code', ['验证码错误'])
+          }
+          // 表单错误
+          if (err.response.statusCode === 422) {
+            this.errors = err.response.data.errors
+          }
         }
        
       }
