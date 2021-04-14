@@ -9,27 +9,29 @@
 <template>
   <div class="page">
     <div class="page__bd">
-      <!-- 填写姓名 -->
+      
+       <!-- 填写姓名 -->
       <div class="weui-cells__title" :class="{'weui-cell_warn': errors.name}">姓名</div>
       <div class="weui-cells weui-cells_after-title">
         <div class="weui-cell weui-cell_input" :class="{'weui-cell_warn': errors.name}">
           <div class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入姓名" name="name" v-model="form.name"/>
+            <input class="weui-input" placeholder="请输入姓名" name="name" v-model="form.name" />
           </div>
           <div v-if="errors.name" class="weui-cell__ft">
             <icon type="warn" size="23" color="#E64340"></icon>
           </div>
         </div>
       </div>
+      
       <!-- 姓名错误信息 -->
       <div v-if="errors.name" class="weui-cells__tips error-message">{{ errors.name[0] }}</div>
 
       <!-- 填写邮箱 -->
-      <div class="weui-cells__title" :class="{'weui-cell_warn': errors.name}">邮箱</div>
+      <div class="weui-cells__title" :class="{'weui-cell_warn': errors.email}">邮箱</div>
       <div class="weui-cells weui-cells_after-title">
         <div class="weui-cell weui-cell_input" :class="{'weui-cell_warn': errors.email}">
           <div class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入姓名" name="email" v-model="form.email"/>
+            <input class="weui-input" placeholder="请输入邮箱" name="email" v-model="form.email"/>
           </div>
           <div v-if="errors.email" class="weui-cell__ft">
             <icon type="warn" size="23" color="#E64340"></icon>
@@ -56,7 +58,7 @@
 
       <!-- 提交表单 -->
       <div class="weui-btn-arae">
-        <button class="weui-btn" type="primary">修改</button>
+        <button class="weui-btn" type="primary" @tap="submit">修改</button>
       </div>
     </div>
   </div>
@@ -89,7 +91,7 @@
     },
     methods: {
       initValidator() {
-           // 实例化
+        // 实例化
         this.validatorInstance = new WeValidator({
           multiCheck: true,
           rules: {

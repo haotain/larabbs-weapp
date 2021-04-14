@@ -27,9 +27,9 @@ wepy.app({
 <config>
 {
   pages: [
-    'pages/users/edit',
     'pages/index',
     'pages/users/me',
+    'pages/users/edit',
     'pages/auth/login',
     'pages/auth/register'
   ],

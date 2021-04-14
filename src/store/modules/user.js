@@ -68,7 +68,7 @@ const actions = {
     await dispatch('login')
   },
   // 更新用户信息
-  async undateUser({commit}, params = {}) {
+  async updateUser({commit}, params = {}) {
     const editResponse = await updateUser(params)
 
     commit('setUser', editResponse.data)
