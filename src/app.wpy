@@ -27,9 +27,9 @@ wepy.app({
 <config>
 {
   pages: [
-     'pages/user',
+    'pages/users/edit',
     'pages/index',
-   
+    'pages/users/me',
     'pages/auth/login',
     'pages/auth/register'
   ],
@@ -46,7 +46,7 @@ wepy.app({
       iconPath: 'assets/images/index.png',
       selectedIconPath: 'assets/images/index_selected.png'
     }, {
-      pagePath: 'pages/user',
+      pagePath: 'pages/users/me',
       text: '我的',
       iconPath: 'assets/images/user.png',
       selectedIconPath: 'assets/images/user_selected.png'
