@@ -1,5 +1,5 @@
 <template>
-  <span{{ formatDatetime }}</span>
+  <span>{{ formatDatetime }}</span>
 </template>
 <script>
   import wepy from '@wepy/core'
