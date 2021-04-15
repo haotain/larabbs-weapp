@@ -266,7 +266,7 @@
           })
           return false
         }
-             try {
+        try {
           let formData = this.form
           formData.verification_key = this.verificationCode.key
 
@@ -280,7 +280,7 @@
           // 跳转到我的页面
           setTimeout(async () => {
             wx.switchTab({
-              url: 'pages/users/me'
+              url: '/pages/users/me'
             })
           }, 2000)
         } catch (err) {
