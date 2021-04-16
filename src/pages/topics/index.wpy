@@ -84,7 +84,7 @@
   </div>
 
   <!-- 话题列表 -->
-  <topic-list :topics="topics" :no-more-data ="noMoreData" />
+  <topic-list :topics="resourceData" :no-more-data ="noMoreData" />
 
 </div>
 </template>
@@ -99,8 +99,10 @@
 <script>
   import wepy from '@wepy/core'
   import {getTopics, getCategories} from '@/api/topic'
+  import listRefresh from '@/mixins/list-refresh.js'
 
   wepy.page({
+    mixins: [listRefresh],
     data: {
        // 分类数据
       categories: [],
@@ -126,54 +128,24 @@
       }
     },
     async onLoad() {
-      this.loadTopics()
+      this.loadData()
       this.loadCategories()
-    },
-    // 下拉刷新
-    async onPullDownRefresh() {
-      this.page = 1
-      this.noMoreData = false
-      await this.loadTopics(true)
-      wx.stopPullDownRefresh();
-    },
-    // 加载更多
-    async onReachBottom() { 
-      // 如果没有更多数据，直接返回
-      if (this.noMoreData || this.isLoading) {
-        return
-      }
-      this.isLoading = true
-      this.page += 1
-      await this.loadTopics()
-
-      this.isLoading = false
-
     },
     methods: {
       // 获取话题数据
-      async loadTopics(reset = false) {
+      async fetchData() {
 
         let params = {
           page: this.page,
           include: 'user,category'
         }
-        console.log(this.currentCategoryId)
         if (this.currentCategoryId) {
           params['filter[category_id]'] = this.currentCategoryId
         }
 
         // 请求话题列表接口
-        const topicsResponse = await getTopics(params)
+        return getTopics(params)
 
-        // 将数据合并到 this.topics
-        this.topics = reset ? topicsResponse.data.data : this.topics.concat(topicsResponse.data.data)
-
-        const pagination = topicsResponse.data.meta
-
-        // 根据分页设置是否还有更多数据
-        if (pagination.current_page === pagination.last_page) {
-          this.noMoreData = true
-        }
       },
       // 话题分类
       async loadCategories() {
@@ -196,8 +168,8 @@
         this.categoryOpen = false
         this.page = 1
 
-         // 设置 reset 为 true
-        this.loadTopics(true)
+        // 设置 reset 为 true
+        this.loadData(true)
       }
     }
 
