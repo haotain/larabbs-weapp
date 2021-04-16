@@ -14,3 +14,12 @@ export function getTopics(data) {
 export function getCategories(data) {
   return request('categories')
 }
+
+/**
+ * 话题详情页
+ */
+export function getTopic(id, data) {
+  return request('topics/' +id, {
+    data: data
+  })
+}
