@@ -29,4 +29,10 @@ export function updateAvatar(avatar) {
     filePath: avatar
   })
 }
+/**
+ * 用户信息
+ */
+export function getUser(id) {
+  return authRequest('users/' + id)
+}
 
