@@ -3,20 +3,23 @@
   <div class="page__bd">
     <reply-list :replies="resourceData" :no-more-data ="noMoreData" />
   </div>
+   <reply-create-link :topicId="topicId" />
 </template>
 <config>
   {
     navigationBarTitleText: '回复列表',
     enablePullDownRefresh: true,
     usingComponents: {
-      "reply-list": "~@/components/reply-list"
+      "reply-list": "~@/components/reply-list",
+       "reply-create-link": "~@/components/reply-create-link"
     }
   }
 </config>
 <script>
   import wepy from "@wepy/core"
   import {getReplies} from "@/api/reply"
-  import ListRefresh from '@/mixins/list-refresh'
+  import ListRefresh from '@/mixins/list-refresh.js'
+  import eventHub from '@/common/eventHub'
 
   wepy.page({
     mixins: [ListRefresh],
@@ -27,6 +30,12 @@
       // 获取 url 参数中的话题ID
       this.topicId = options.topic_id
       this.loadData()
+
+      eventHub.$on('reply-created', (...args) => {
+        this.page = 1
+        this.noMoreData = false
+        this.loadData(true)
+      })
     },
     methods: {
       async fetchData() {

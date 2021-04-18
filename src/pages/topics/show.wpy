@@ -81,7 +81,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="weui-panel__ft">
         <a class="weui-cell weui-cell_access weui-cell_link" url="/pages/replies/index?topic_id={{ topic.id }}">
           <div class="weui-cell__bd">查看全部回复</div>
@@ -91,12 +91,14 @@
     </div>
 
   </div>
+   <reply-create-link :topicId="topic.id" />
 </template>
 <config>
   {
     navigationBarTitleText: '话题详情',
     usingComponents: {
-      "datetime-diff": "~@/components/datetime-diff"
+      "datetime-diff": "~@/components/datetime-diff",
+      "reply-create-link": "~@/components/reply-create-link"
     }
   }
 </config>
@@ -126,6 +128,10 @@
     },
     onLoad(options) {
       this.loadTopic(options.id)
+
+       eventHub.$on('reply-created', (...args) => {
+        this.loadTopic(options.id)
+      });
     },
     methods: {
       // 获取话题数据

@@ -16,7 +16,7 @@
   import wepy from '@wepy/core'
   import eventHub from '@/common/eventHub'
   import {getUserReplies} from '@/api/reply'
-  import listRefresh from '@/mixins/list-refresh'
+  import listRefresh from '@/mixins/list-refresh.js'
 
   wepy.page({
     mixins: [listRefresh],
