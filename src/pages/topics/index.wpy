@@ -105,9 +105,9 @@
   wepy.page({
     mixins: [listRefresh],
     data: {
-       // 分类数据
+      // 分类数据
       categories: [],
-       // 当前的分类
+      // 当前的分类
       currentCategory: {},
       // 是否显示分类
       categoryOpen: false,
@@ -141,7 +141,6 @@
     methods: {
       // 获取话题数据
       async fetchData() {
-
         let params = {
           page: this.page,
           include: 'user,category'
@@ -149,10 +148,8 @@
         if (this.currentCategoryId) {
           params['filter[category_id]'] = this.currentCategoryId
         }
-
         // 请求话题列表接口
         return getTopics(params)
-
       },
       // 话题分类
       async loadCategories() {

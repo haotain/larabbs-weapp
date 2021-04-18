@@ -19,7 +19,7 @@
   import eventHub from '@/common/eventHub'
 
   wepy.page({
-    mixins: [listRefresh]
+    mixins: [listRefresh],
     data: {
       page: 1,
       topics: [],
