@@ -32,6 +32,7 @@ wepy.app({
         return false
       }
       // 判断权限中是否有目标权限
+      console.log(this.$store.getters.perms)
       if (this.$store.getters.perms.find(perm => perm.name === tergetPerm)) {
         return true
       }

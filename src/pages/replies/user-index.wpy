@@ -1,6 +1,6 @@
 <template>
   <div class="page__bd">
-     <reply-list :replies="resourceData" :no-more-data ="noMoreData" / >
+     <reply-list :replies="resourceData" :no-more-data ="noMoreData" />
   </div>
 </template>
 <config>
@@ -32,7 +32,7 @@
       })
     },
     methods: {
-      fetchData() {
+      async fetchData() {
         return getUserReplies(this.userId, {
           page: this.page,
           include: 'user'

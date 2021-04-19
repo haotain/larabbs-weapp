@@ -181,7 +181,7 @@
           let responseData = JSON.parse(imageResponse.data)
 
           this.form = Object.assign({}, this.form, {'avatar': responseData.path, 'avatar_image_id': responseData.id})
-          console.log(this.form)
+
         } catch(err) {}
       }
     } 

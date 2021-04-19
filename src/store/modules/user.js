@@ -55,11 +55,12 @@ const actions = {
     commit('resetState')
   },
   // 获取用户信息
-  async getUser({commit}) {
+  async getUser({dispatch, commit}) {
     const userResponse = await getCurrentUser()
 
     commit('setUser', userResponse.data)
     auth.setUser(userResponse.data)
+    dispatch('getPerms')
   },
   // 注册
   async register ({dispatch}, params = {}) {
