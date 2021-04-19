@@ -130,7 +130,7 @@
       },
       currentCategoryName() {
         return this.currentCategory.name || '话题'
-      }，
+      },
       ...mapGetters(['unreadCount'])
     },
     async onLoad() {
