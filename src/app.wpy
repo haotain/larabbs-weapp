@@ -26,6 +26,16 @@ wepy.app({
   methods: {
     async updateUnreadCount() {
       await this.$store.dispatch('updateUnreadCount')
+    },
+    can(targetPerm) {
+      if (!this.$store.getters.isLoggedIn) {
+        return false
+      }
+      // 判断权限中是否有目标权限
+      if (this.$store.getters.perms.find(perm => perm.name === tergetPerm)) {
+        return true
+      }
+      return false
     }
   }
 })
@@ -44,7 +54,7 @@ wepy.app({
     'pages/replies/index',
     'pages/replies/user-index',
     'pages/replies/create',
-     'pages/notifications/index'
+    'pages/notifications/index'
 
   ],
   window: {

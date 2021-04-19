@@ -30,7 +30,7 @@
         if (!this.reply || !this.isLoggedIn) {
           return false
         }
-        return this.user.id === this.reply.user_id
+        return this.$app.can('manage_contents') || this.user.id === this.reply.user_id
       }
     },
     methods: {

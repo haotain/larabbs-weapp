@@ -123,7 +123,7 @@
           return false
         }
         // 当前用户是话题的发布者
-        return this.user.id === this.topic.user_id
+        return (this.user.id === this.topic.user_id) || this.$app.con('manage_contents')
       }
     },
     onLoad(options) {
@@ -132,6 +132,14 @@
        eventHub.$on('reply-created', (...args) => {
         this.loadTopic(options.id)
       });
+    },
+    onShareAppMessage() {
+      return {
+        // 标题是话题标题
+        title: this.topic.title,
+        //路径为话题详情路径
+        path: '/pages/topics/show?id' + this.topic.id
+      }
     },
     methods: {
       // 获取话题数据
