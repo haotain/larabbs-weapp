@@ -31,6 +31,7 @@
     "@wepy/cli": "^2.0.0-alpha.28",
     "@wepy/compiler-babel": "^2.0.1",
     "@wepy/compiler-less": "^2.0.1",
+    "@wepy/plugin-define": "^2.1.0",
     "@wepy/plugin-uglifyjs": "^2.1.0",
     "babel-eslint": "^7.2.1",
     "cross-env": "^5.1.3",
