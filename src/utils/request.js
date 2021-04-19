@@ -1,7 +1,7 @@
 import wepy from '@wepy/core'
 import store from '@/store'
 
-const host = 'http://www.bbs.com/api/v1/'
+const host = API_URL
 
 // 普通请求
 const request = async (url, options = {}, showLoading = true) => {
