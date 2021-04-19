@@ -2,7 +2,7 @@ import wepy from '@wepy/core'
 import {login, logout, refresh, register} from '@/api/auth'
 import * as auth from '@/utils/auth'
 import isEmpty from 'lodash/isEmpty'
-import {getCurrentUser, updateUser, getPerms} from '@/api/user'
+import {getCurrentUser, updateUser, getPerms } from '@/api/user'
 
 const getDefaultState = () => {
   return {
@@ -62,6 +62,13 @@ const actions = {
     auth.setUser(userResponse.data)
     dispatch('getPerms')
   },
+  // 获取用户权限
+  async getPerms ({ commit }) {
+    const permResponse = await getPerms()
+
+    commit('setPerms', permResponse.data.data)
+    auth.setPerms(permResponse.data.data)
+  },
   // 注册
   async register ({dispatch}, params = {}) {
     const loginData = await wepy.wx.login()
@@ -76,13 +83,6 @@ const actions = {
 
     commit('setUser', editResponse.data)
     auth.setUser(editResponse.data)
-  },
-  // 获取用户权限
-  async getPerms({commit}) {
-    const permResponse = await getPerms()
-
-    commit('setPerms', permResponse.data.data)
-    auth.setPerms(permResponse.data.data)
   }
 
 }
@@ -96,11 +96,11 @@ const mutations = {
     state.accessToken = tokenPayload.access_token
     state.accessTokenExpiredAt = new Date().getTime() + tokenPayload.expires_in * 1000
   },
-  setPerms(state, perms) {
-    state.perms = perms
-  },
   resetState(state) {
     Object.assign(state, getDefaultState())
+  },
+  setPerms(state, perms) {
+    state.perms = perms
   }
 
 }
