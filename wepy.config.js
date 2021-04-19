@@ -1,5 +1,7 @@
 const path = require('path');
 var prod = process.env.NODE_ENV === 'production';
+const DefinePlugin = require('@wepy/plugin-define');
+const PluginUglifyjs = require('@wepy/plugin-uglifyjs');
 
 module.exports = {
   wpyExt: '.wpy',
@@ -29,7 +31,14 @@ module.exports = {
       ]
     }
   },
-  plugins: [],
+  plugins: [
+    DefinePlugin({
+      API_URL: prod ? '"https://bbs.wushouyong.com/api/v1/"' : '"http://www.bbs.com/api/v1/"',
+    }),
+    PluginUglifyjs({
+    // options
+    })
+  ],
   appConfig: {
     noPromiseAPI: ['createSelectorQuery']
   }
