@@ -36,7 +36,7 @@ module.exports = {
       API_URL: prod ? '"https://bbs.wushouyong.com/api/v1/"' : '"http://www.bbs.com/api/v1/"',
     }),
     PluginUglifyjs({
-      // options
+    // options
     })
   ],
   appConfig: {

@@ -123,7 +123,7 @@
           return false
         }
         // 当前用户是话题的发布者
-        return (this.user.id === this.topic.user_id) || this.$app.con('manage_contents')
+        return (this.user.id === this.topic.user_id) || this.$app.can('manage_contents')
       }
     },
     onLoad(options) {
@@ -149,7 +149,6 @@
         })
 
       this.topic = tipocResponse.data
-
       },
       // 删除话题
       async deleteTopic() {

@@ -38,7 +38,7 @@ export function getUser(id) {
 /**
  * 获取用户权限
  */
-export function getperms() {
+export function getPerms() {
   return authRequest('user/permissions')
 }
 

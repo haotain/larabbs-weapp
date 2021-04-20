@@ -13,3 +13,11 @@ export function getNotificationStats(...params) {
 export function getNotifications() {
   return authRequest('notifications')
 }
+/**
+ * 标记消息为已读
+ */
+export function readNotifications() {
+  return authRequest('user/read/notifications', {
+    method: 'PUT'
+  })
+}

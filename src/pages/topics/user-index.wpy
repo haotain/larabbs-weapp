@@ -1,6 +1,6 @@
 <template>
   <div class="page__bd">
-    <topic-list :topics="topics" :no-more-data="noMoreData" />
+    <topic-list :topics="resourceData" :no-more-data="noMoreData" />
   </div>
 </template>
 <config>
@@ -22,11 +22,6 @@
     mixins: [listRefresh],
     data: {
       page: 1,
-      topics: [],
-      // 有没有更多数据
-      noMoreData: false,
-      // 是否加载中
-      isLoading: false,
       // 用户 id
       userId: 0
     },
